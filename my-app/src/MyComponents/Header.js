@@ -1,6 +1,6 @@
 import React from "react";
 
-class app extends React.Component {
+class Header extends React.Component {
   render() {
     this.state = [
       { Name: "Jay", Std: 10, Age: 16 },
@@ -9,7 +9,7 @@ class app extends React.Component {
     ];
     return (
       <div>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Name</th>
@@ -34,4 +34,4 @@ class app extends React.Component {
   }
 }
 
-export default app;
+export default Header;
