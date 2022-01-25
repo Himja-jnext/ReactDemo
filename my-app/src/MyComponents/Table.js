@@ -1,18 +1,36 @@
 import React, { Component } from "react";
 
-class Table extends React.Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //         usertableData = [
-  //             { Name: "Jay", Std: 10, Age: 16, AvgMarks: 85 },
-  //         { Name: "Daksh", Std: 7, Age: 13, AvgMarks: 63 },
-  //         { Name: "Kiya", Std: 3, Age: 8, AvgMarks: 78 },
-  //         { Name: "Jarnav", Std: 5, Age: 10, AvgMarks: 94 },
-  //         { Name: "Dhiya", Std: 12, Age: 18, AvgMarks: 56 }
-  //     ]
-  //     };
-  //   }
+export default class Table extends React.Component {
+  render() {
+    const { usertabVal } = this.props;
+    // console.log("usertabVal", usertabVal);
+    return (
+      <div>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Std</th>
+              <th>Age</th>
+              <th>AvgMarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usertabVal?.map((item, index) => {
+              //console.log(item);
 
-  render()
+              return (
+                <tr onClick={() => this.props.handleClick(item)}>
+                  <td>{item?.Name}</td>
+                  <td>{item?.Std}</td>
+                  <td>{item?.Age}</td>
+                  <td>{item?.AvgMarks}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
