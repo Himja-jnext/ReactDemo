@@ -1,5 +1,7 @@
 .table{
-    padding: 20px;
+    margin: 20px 0 30px 200px;
+    padding: 10px;
+    border: 1px solid #dedede;
 }
 th{
     padding: 10px;
@@ -8,7 +10,7 @@ td{
     padding: 10px;
 }
 .dataform{
-    padding: 50px 0 30px 50px;
+    padding: 50px 0 30px 200px;
 }
 .datablock{
     padding-bottom: 8px;
@@ -32,4 +34,5 @@ td{
     border-radius: 10px;
     font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
 }

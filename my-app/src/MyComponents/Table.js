@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class Table extends React.Component {
   render() {
     const { usertabVal } = this.props;
-    // console.log("usertabVal", usertabVal);
+    console.log("usertabVal", usertabVal);
     return (
       <div>
         <table className="table">
@@ -17,8 +17,7 @@ export default class Table extends React.Component {
           </thead>
           <tbody>
             {usertabVal?.map((item, index) => {
-              //console.log(item);
-
+              // console.log("item", item);
               return (
                 <tr onClick={() => this.props.handleClick(item)}>
                   <td>{item?.Name}</td>
