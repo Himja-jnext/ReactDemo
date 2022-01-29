@@ -75,16 +75,16 @@ export default class Form extends React.Component {
 
     // Radiobutton validation
 
-    if (fields["radiobutton"] == "defined") {
-      formIsvalid = true;
-    }
+    // if (fields["radiobutton"] == "off") {
+    //   formIsvalid = false;
+    // }
 
     // Checkbox validation
 
-    // if (!fields["course"]) {
-    //   formIsvalid = false;
-    //   error["course"] = "*This is required.";
-    // }
+    if (fields["hobby"] !== "") {
+      formIsvalid = false;
+      error["hobby"] = "*This is required.";
+    }
 
     this.setState({ error: error });
     return formIsvalid;
@@ -92,7 +92,6 @@ export default class Form extends React.Component {
 
   formSubmit(e) {
     e.preventDefault();
-
     if (this.handleValidation()) {
       alert("Form submitted");
     } else {
@@ -194,10 +193,12 @@ export default class Form extends React.Component {
               {this.state.error["AvgMarks"]}
             </p>
           </div>
+
           <div className="datablock">
             <select
               id="course"
               name="course"
+              value="myCourse"
               onChange={
                 ((e) => this.props.handleInputChange(e),
                 this.handleChange.bind(this, "course"))
@@ -250,13 +251,33 @@ export default class Form extends React.Component {
           </div>
           <div className="datablock">
             <p name="hobby">Select your Hobbies: </p>
-            <input type="checkbox" Name="Sport" id="Sport" />
+            <input
+              type="checkbox"
+              Name="Sports"
+              id="Sports"
+              onChange={this.handleChange.bind(this, "Sports")}
+            />
             <lable htmlFor="Sport">Sports</lable>
-            <input type="checkbox" Name="Cooking" id="Cooking" />
+            <input
+              type="checkbox"
+              Name="Cooking"
+              id="Cooking"
+              onChange={this.handleChange.bind(this, "Cooking")}
+            />
             <lable htmlFor="Cooking">Cooking</lable>
-            <input type="checkbox" Name="Reading" id="Reading" />
+            <input
+              type="checkbox"
+              Name="Reading"
+              id="Reading"
+              onChange={this.handleChange.bind(this, "Reading")}
+            />
             <lable htmlFor="Reading">Reading</lable>
-            <input type="checkbox" Name="Singing" id="Singing" />
+            <input
+              type="checkbox"
+              Name="Singing"
+              id="Singing"
+              onChange={this.handleChange.bind(this, "Singing")}
+            />
             <lable htmlFor="Singing">Singing</lable>
             <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["hobby"]}

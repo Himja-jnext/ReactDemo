@@ -6,6 +6,7 @@ import TableComponent from "./MyComponents/TableComponent";
 // import Clock from "./MyComponents/Clock";
 // import Counter from "./MyComponents/Counter";
 // import Tutorial from "./MyComponents/Tutorial";
+import FavoriteColor from "./MyComponents/Tutorial";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       {/* <App /> */}
       {/* <Clock /> */}
       {/* <Counter /> */}
+      <FavoriteColor />
     </>
   );
 }
