@@ -23,7 +23,8 @@ export default class Table extends React.Component {
             {usertabVal?.map((item, index) => {
               // console.log("item", item);
               return (
-                <tr onClick={() => this.props.handleClick(item)}>
+                // <tr onClick={() => this.props.handleClick(item)}>
+                <tr>
                   <td>{item?.Name}</td>
                   <td>{item?.Std}</td>
                   <td>{item?.Age}</td>
@@ -32,7 +33,7 @@ export default class Table extends React.Component {
                   <td>{item?.lang}</td>
                   <td>{item?.hobby}</td>
 
-                  <button onClick={(e) => this.props.editItem(index, item)}>
+                  <button onClick={(e) => this.props.editItem(item)}>
                     Edit
                   </button>
                   <button onClick={() => this.props.deleteItem(index, item)}>

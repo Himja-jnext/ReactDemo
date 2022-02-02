@@ -109,6 +109,7 @@ export default class Form extends React.Component {
   render() {
     const { singleUserinfo } = this.props;
     // console.log("singleUserinfo", singleUserinfo);
+    const { chagedtext } = this.props;
     return (
       <div>
         <form
@@ -117,7 +118,7 @@ export default class Form extends React.Component {
           onSubmit={(e) => this.props.submitdata(e)}
         >
           <div className="datablock">
-            <label htmlFor="Name">Name :</label>
+            <label htmlFor="Name">Name : </label>
             <br></br>
             <input
               type="text"
@@ -126,7 +127,10 @@ export default class Form extends React.Component {
               className="nameInput"
               placeholder="Enter Name"
               value={singleUserinfo.Name}
-              onChange={(e) => this.props.handleInputChange(e)}
+              onChange={
+                (e) => this.props.handleInputChange(e)
+                // this.handleChange.bind(this, "Name"))
+              }
             />
             {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["Name"]}
@@ -143,7 +147,10 @@ export default class Form extends React.Component {
               className="nameInput"
               placeholder="Enter Standard"
               value={singleUserinfo.Std}
-              onChange={(e) => this.props.handleInputChange(e)}
+              onChange={
+                (e) => this.props.handleInputChange(e)
+                // this.handleChange.bind(this, "Std"))
+              }
             />
             {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["Std"]}
@@ -159,7 +166,10 @@ export default class Form extends React.Component {
               className="nameInput"
               placeholder="Enter Age"
               value={singleUserinfo.Age}
-              onChange={(e) => this.props.handleInputChange(e)}
+              onChange={
+                (e) => this.props.handleInputChange(e)
+                // this.handleChange.bind(this, "Age"))
+              }
             />
             {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["Age"]}
@@ -175,7 +185,10 @@ export default class Form extends React.Component {
               className="nameInput"
               placeholder="Enter AvgMarks"
               value={singleUserinfo.AvgMarks}
-              onChange={(e) => this.props.handleInputChange(e)}
+              onChange={
+                (e) => this.props.handleInputChange(e)
+                // this.handleChange.bind(this, "AvgMarks"))
+              }
             />
             {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["AvgMarks"]}
@@ -271,15 +284,8 @@ export default class Form extends React.Component {
               {this.state.error["hobby"]}
             </p>
           </div> */}
-          <button type="submit" className="sub-btn">
+          <button type="submit" className="sub-btn" value={chagedtext.value}>
             Submit
-          </button>
-          <button
-            type="reset"
-            onClick={() => this.props.resetData()}
-            className="sub-btn"
-          >
-            Reset
           </button>
         </form>
       </div>

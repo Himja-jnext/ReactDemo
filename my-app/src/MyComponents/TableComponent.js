@@ -21,32 +21,26 @@ class TableComponent extends React.Component {
       Age: "",
       AvgMarks: "",
       id: "",
+      text: "",
     };
-    this.showclickData = this.showclickData.bind(this);
+    // this.showclickData = this.showclickData.bind(this);
     this.removeItem = this.removeItem.bind(this);
   }
   showclickData = (item) => {
     this.setState({ singleUserData: item });
   };
-
-  // addItem = (index, item) => {
-  //   const { UserData } = this.state;
-  //   const singleUserData = {
-  //     value: this.state.singleUserData,
-  //     id: Math.random(),
-  //   };
-  //   UserData.slice(index, item);
-  //   this.setState({ singleUserData: singleUserData });
-  // };
-
+  changebtn = (e) => {
+    this.setState({ text: e.target.text });
+  };
   removeItem = (index, item) => {
     const { UserData } = this.state;
-    console.log("UserData", UserData, index, item);
+    console.log("clickUserData", index, item);
     UserData.splice(index, 1);
+    console.log("remainUserdata", UserData);
     this.setState({ UserData: UserData });
   };
 
-  onFormsubmit = (e, value) => {
+  onFormsubmit = (e) => {
     e.preventDefault();
     const { singleUserData } = this.state;
     let UserData = [...this.state.UserData];
@@ -54,27 +48,19 @@ class TableComponent extends React.Component {
     UserData.push(singleUserData);
     this.setState({
       UserData,
+      singleUserData: {},
     });
-
-    // this.setState((e.target.value = ""));
-    // this.setState({ Name: "", Std: "", Age: "", AvgMarks: "", id: "" });
+    e.target.reset();
   };
-  resetform = (e, value, field) => {
-    const { UserData } = this.state;
-    console.log("hello", UserData);
 
-    // this.setState({ Name: "", Std: "", Age: "", AvgMarks: "", id: "" });
-    let fields = this.state.fields;
-    fields[field] = e.target.value;
-    this.setState((fields[field] = ""));
-  };
   InputChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    this.setState((state) => ({
+    this.setState(() => ({
       singleUserData: { ...this.state.singleUserData, [name]: value },
     }));
   };
+
   render() {
     const { userData, singleUserData, UserData } = this.state;
 
@@ -88,13 +74,14 @@ class TableComponent extends React.Component {
           submitdata={this.onFormsubmit}
           singleUserinfo={this.state.singleUserData}
           handleInputChange={this.InputChange}
-          resetData={this.resetform}
+          chagedtext={this.state.text}
+          updateBtn={this.changebtn}
         />
         <Table
           usertabVal={this.state.UserData}
           deleteItem={this.removeItem}
-          handleClick={this.showclickData}
-          editItem={this.addItem}
+          editItem={this.showclickData}
+          // handleClick={this.showclickData}
         />
 
         {/* <ClickuserData singleUserValue={singleUserData} /> */}
