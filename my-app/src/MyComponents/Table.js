@@ -4,6 +4,7 @@ export default class Table extends React.Component {
   render() {
     const { usertabVal } = this.props;
     // console.log("usertabVal", usertabVal);
+
     return (
       <div>
         <table className="table">
@@ -20,7 +21,7 @@ export default class Table extends React.Component {
           </thead>
           <tbody>
             {usertabVal?.map((item, index) => {
-              console.log("item", item);
+              // console.log("item", item);
               return (
                 <tr onClick={() => this.props.handleClick(item)}>
                   <td>{item?.Name}</td>
@@ -30,6 +31,13 @@ export default class Table extends React.Component {
                   <td>{item?.course}</td>
                   <td>{item?.lang}</td>
                   <td>{item?.hobby}</td>
+
+                  <button onClick={(e) => this.props.editItem(index, item)}>
+                    Edit
+                  </button>
+                  <button onClick={() => this.props.deleteItem(index, item)}>
+                    Delete
+                  </button>
                 </tr>
               );
             })}

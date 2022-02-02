@@ -3,119 +3,118 @@ import React, { Component } from "react";
 export default class Form extends React.Component {
   constructor() {
     super();
-    this.state = {
-      fields: {},
-      error: {},
-    };
+    // this.state = {
+    //   fields: {},
+    //   error: {},
+    // };
   }
-  handleValidation() {
-    let { fields } = this.state;
-    let error = {};
-    let formIsvalid = true;
+  // handleValidation() {
+  //   let { fields } = this.state;
+  //   let error = {};
+  //   let formIsvalid = true;
 
-    // Name validation
+  // Name validation
 
-    // if (!fields["Name"]) {
-    //   formIsvalid = false;
-    //   error["Name"] = "*Name is required.";
-    // }
+  // if (!fields["Name"]) {
+  //   formIsvalid = false;
+  //   error["Name"] = "*Name is required.";
+  // }
 
-    // if (typeof fields["Name"] !== "undefined") {
-    //   if (!fields["Name"].match(/^[a-zA-Z]+$/)) {
-    //     formIsvalid = false;
-    //     error["Name"] = "*Only letters allowed.";
-    //   }
-    // }
+  // if (typeof fields["Name"] !== "undefined") {
+  //   if (!fields["Name"].match(/^[a-zA-Z]+$/)) {
+  //     formIsvalid = false;
+  //     error["Name"] = "*Only letters allowed.";
+  //   }
+  // }
 
-    // Standard validation
+  // Standard validation
 
-    // if (!fields["Std"]) {
-    //   formIsvalid = false;
-    //   error["Std"] = "*Standard is required.";
-    // }
-    // if (typeof fields["Std"] !== "undefined") {
-    //   if (!fields["Std"].match(/^[0-9\b]+$/)) {
-    //     formIsvalid = false;
-    //     error["Std"] = "*Only Numbers allowed.";
-    //   }
-    // }
+  // if (!fields["Std"]) {
+  //   formIsvalid = false;
+  //   error["Std"] = "*Standard is required.";
+  // }
+  // if (typeof fields["Std"] !== "undefined") {
+  //   if (!fields["Std"].match(/^[0-9\b]+$/)) {
+  //     formIsvalid = false;
+  //     error["Std"] = "*Only Numbers allowed.";
+  //   }
+  // }
 
-    // Age validation
+  // Age validation
 
-    // if (!fields["Age"]) {
-    //   formIsvalid = false;
-    //   error["Age"] = "*Age is required.";
-    // }
-    // if (typeof fields["Age"] !== "undefined") {
-    //   if (!fields["Age"].match(/^[0-9\b]+$/)) {
-    //     formIsvalid = false;
-    //     error["Age"] = "*Only Numbers allowed.";
-    //   }
-    // }
+  // if (!fields["Age"]) {
+  //   formIsvalid = false;
+  //   error["Age"] = "*Age is required.";
+  // }
+  // if (typeof fields["Age"] !== "undefined") {
+  //   if (!fields["Age"].match(/^[0-9\b]+$/)) {
+  //     formIsvalid = false;
+  //     error["Age"] = "*Only Numbers allowed.";
+  //   }
+  // }
 
-    // AvgMarks validation
+  // AvgMarks validation
 
-    // if (!fields["AvgMarks"]) {
-    //   formIsvalid = false;
-    //   error["AvgMarks"] = "*AvgMarks is required.";
-    // }
-    // if (typeof fields["AvgMarks"] !== "undefined") {
-    //   if (!fields["AvgMarks"].match(/^[0-9\b]+$/)) {
-    //     formIsvalid = false;
-    //     error["AvgMarks"] = "*Only Numbers allowed.";
-    //   }
-    // }
+  // if (!fields["AvgMarks"]) {
+  //   formIsvalid = false;
+  //   error["AvgMarks"] = "*AvgMarks is required.";
+  // }
+  // if (typeof fields["AvgMarks"] !== "undefined") {
+  //   if (!fields["AvgMarks"].match(/^[0-9\b]+$/)) {
+  //     formIsvalid = false;
+  //     error["AvgMarks"] = "*Only Numbers allowed.";
+  //   }
+  // }
 
-    // Dropdown validation
+  // Dropdown validation
 
-    // if (fields["course"] !== "undefined") {
-    //   formIsvalid = false;
-    //   error["dropdown"] = "*tHIS is required.";
-    // }
+  // if (fields["course"] !== "undefined") {
+  //   formIsvalid = false;
+  //   error["dropdown"] = "*tHIS is required.";
+  // }
 
-    // Radiobutton validation
+  // Radiobutton validation
 
-    // if (fields["radiobutton"] == "off") {
-    //   formIsvalid = false;
-    // }
+  // if (fields["radiobutton"] == "off") {
+  //   formIsvalid = false;
+  // }
 
-    // Checkbox validation
+  // Checkbox validation
 
-    if (fields["hobby"] !== "") {
-      formIsvalid = false;
-      error["hobby"] = "*This is required.";
-    }
+  // if (fields["hobby"] !== "") {
+  //   formIsvalid = false;
+  //   error["hobby"] = "*This is required.";
+  // }
 
-    this.setState({ error: error });
-    return formIsvalid;
-  }
+  //   this.setState({ error: error });
+  //   return formIsvalid;
+  // }
 
-  formSubmit(e) {
-    e.preventDefault();
-    if (this.handleValidation()) {
-      alert("Form submitted");
-    } else {
-      alert("error: Form has errors.");
-    }
-  }
+  // formSubmit(e) {
+  //   e.preventDefault();
+  //   if (this.handleValidation()) {
+  //     alert("Form submitted");
+  //   } else {
+  //     alert("error: Form has errors.");
+  //   }
+  // }
 
-  handleChange(field, e) {
-    let fields = this.state.fields;
-    fields[field] = e.target.value;
-    this.setState({ fields });
-    console.log("hello", fields);
-  }
+  // handleChange(field, e) {
+  //   let fields = this.state.fields;
+  //   fields[field] = e.target.value;
+  //   this.setState({ fields });
+  //   console.log("hello", fields);
+  // }
 
   render() {
     const { singleUserinfo } = this.props;
-    console.log("singleUserinfo", singleUserinfo);
+    // console.log("singleUserinfo", singleUserinfo);
     return (
       <div>
         <form
           className="dataform"
-          onSubmit={
-            ((e) => this.props.submitdata(e), this.formSubmit.bind(this))
-          }
+          id="resetform"
+          onSubmit={(e) => this.props.submitdata(e)}
         >
           <div className="datablock">
             <label htmlFor="Name">Name :</label>
@@ -127,33 +126,28 @@ export default class Form extends React.Component {
               className="nameInput"
               placeholder="Enter Name"
               value={singleUserinfo.Name}
-              onChange={
-                ((e) => this.props.handleInputChange(e),
-                this.handleChange.bind(this, "Name"))
-              }
+              onChange={(e) => this.props.handleInputChange(e)}
             />
-            <p style={{ color: "rgb(231, 111, 5)" }}>
+            {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["Name"]}
-            </p>
+            </p> */}
           </div>
           <div className="datablock">
             <label htmlFor="Std">Standard :</label>
             <br></br>
             <input
+              ref={(ref) => (this.fileInput = ref)}
               type="text"
               id="Std"
               name="Std"
               className="nameInput"
               placeholder="Enter Standard"
               value={singleUserinfo.Std}
-              onChange={
-                ((e) => this.props.handleInputChange(e),
-                this.handleChange.bind(this, "Std"))
-              }
+              onChange={(e) => this.props.handleInputChange(e)}
             />
-            <p style={{ color: "rgb(231, 111, 5)" }}>
+            {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["Std"]}
-            </p>
+            </p> */}
           </div>
           <div className="datablock">
             <label htmlFor="Age">Age :</label>
@@ -165,14 +159,11 @@ export default class Form extends React.Component {
               className="nameInput"
               placeholder="Enter Age"
               value={singleUserinfo.Age}
-              onChange={
-                ((e) => this.props.handleInputChange(e),
-                this.handleChange.bind(this, "Age"))
-              }
+              onChange={(e) => this.props.handleInputChange(e)}
             />
-            <p style={{ color: "rgb(231, 111, 5)" }}>
+            {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["Age"]}
-            </p>
+            </p> */}
           </div>
           <div className="datablock">
             <label htmlFor="AvgMarks">AvgMarks :</label>
@@ -184,17 +175,14 @@ export default class Form extends React.Component {
               className="nameInput"
               placeholder="Enter AvgMarks"
               value={singleUserinfo.AvgMarks}
-              onChange={
-                ((e) => this.props.handleInputChange(e),
-                this.handleChange.bind(this, "AvgMarks"))
-              }
+              onChange={(e) => this.props.handleInputChange(e)}
             />
-            <p style={{ color: "rgb(231, 111, 5)" }}>
+            {/* <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["AvgMarks"]}
-            </p>
+            </p> */}
           </div>
 
-          <div className="datablock">
+          {/* <div className="datablock">
             <select
               id="course"
               name="course"
@@ -282,9 +270,16 @@ export default class Form extends React.Component {
             <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["hobby"]}
             </p>
-          </div>
+          </div> */}
           <button type="submit" className="sub-btn">
             Submit
+          </button>
+          <button
+            type="reset"
+            onClick={() => this.props.resetData()}
+            className="sub-btn"
+          >
+            Reset
           </button>
         </form>
       </div>

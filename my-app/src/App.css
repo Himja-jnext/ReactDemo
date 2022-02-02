@@ -26,7 +26,7 @@ td{
     outline: none;
 }
 .sub-btn{
-    margin-top: 15px;
+    margin: 15px 15px 0 0;
     padding: 9px 26px;
     color: #fff;
     background-color:rgb(231, 111, 5);
