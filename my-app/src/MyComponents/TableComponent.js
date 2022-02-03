@@ -21,17 +21,29 @@ class TableComponent extends React.Component {
       Age: "",
       AvgMarks: "",
       id: "",
-      text: "",
+      Update: false,
     };
     // this.showclickData = this.showclickData.bind(this);
     this.removeItem = this.removeItem.bind(this);
   }
-  showclickData = (item) => {
-    this.setState({ singleUserData: item });
+  // showclickData = (item) => {
+  //   this.setState({ singleUserData: item });
+  // };
+
+  addItem = (e, item) => {
+    const { UserData } = this.state;
+    this.setState({ singleUserData: item, Update: true });
+    // let updateData = UserData.map((userupdates) => {
+    //   if (userupdates.index === UserData.index) {
+    //     userupdates.Name = UserData.Name;
+    //     userupdates.Std = UserData.Std;
+    //   }
+    //   {
+    //     return userupdates;
+    //   }
+    // });
   };
-  changebtn = (e) => {
-    this.setState({ text: e.target.text });
-  };
+
   removeItem = (index, item) => {
     const { UserData } = this.state;
     console.log("clickUserData", index, item);
@@ -49,7 +61,9 @@ class TableComponent extends React.Component {
     this.setState({
       UserData,
       singleUserData: {},
+      Update: false,
     });
+    // console.log("data", singleUserData, UserData);
     e.target.reset();
   };
 
@@ -62,7 +76,7 @@ class TableComponent extends React.Component {
   };
 
   render() {
-    const { userData, singleUserData, UserData } = this.state;
+    const { userData, singleUserData, UserData, Update } = this.state;
 
     // console.log("userData", this.state.UserData);
     // console.log("singleUserData", this.state.singleUserData);
@@ -76,11 +90,12 @@ class TableComponent extends React.Component {
           handleInputChange={this.InputChange}
           chagedtext={this.state.text}
           updateBtn={this.changebtn}
+          updatedData={this.state.Update}
         />
         <Table
           usertabVal={this.state.UserData}
           deleteItem={this.removeItem}
-          editItem={this.showclickData}
+          editItem={this.addItem}
           // handleClick={this.showclickData}
         />
 

@@ -109,14 +109,11 @@ export default class Form extends React.Component {
   render() {
     const { singleUserinfo } = this.props;
     // console.log("singleUserinfo", singleUserinfo);
-    const { chagedtext } = this.props;
+    const { updatedData } = this.props;
+    console.log("updatedData", updatedData);
     return (
       <div>
-        <form
-          className="dataform"
-          id="resetform"
-          onSubmit={(e) => this.props.submitdata(e)}
-        >
+        <form className="dataform" onSubmit={(e) => this.props.submitdata(e)}>
           <div className="datablock">
             <label htmlFor="Name">Name : </label>
             <br></br>
@@ -194,7 +191,6 @@ export default class Form extends React.Component {
               {this.state.error["AvgMarks"]}
             </p> */}
           </div>
-
           {/* <div className="datablock">
             <select
               id="course"
@@ -284,8 +280,9 @@ export default class Form extends React.Component {
               {this.state.error["hobby"]}
             </p>
           </div> */}
-          <button type="submit" className="sub-btn" value={chagedtext.value}>
-            Submit
+
+          <button type="submit" className="sub-btn">
+            {updatedData ? "update" : "submit"}
           </button>
         </form>
       </div>
