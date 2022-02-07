@@ -31,24 +31,25 @@ class TableComponent extends React.Component {
   // };
 
   addItem = (e, item) => {
-    const { UserData } = this.state;
     this.setState({ singleUserData: item, Update: true });
-    // let updateData = UserData.map((userupdates) => {
-    //   if (userupdates.index === UserData.index) {
-    //     userupdates.Name = UserData.Name;
-    //     userupdates.Std = UserData.Std;
-    //   }
-    //   {
-    //     return userupdates;
-    //   }
-    // });
+    // console.log("singleUserData", item);
   };
+
+  // let updateData = UserData.map((userupdates) => {
+  //   if (userupdates.index === UserData.index) {
+  //     userupdates.Name = UserData.Name;
+  //     userupdates.Std = UserData.Std;
+  //   }
+  //   {
+  //     return userupdates;
+  //   }
+  // }); line-41 :"try" : subitem.Name,
 
   removeItem = (index, item) => {
     const { UserData } = this.state;
-    console.log("clickUserData", index, item);
+    // console.log("clickUserData", index, item);
     UserData.splice(index, 1);
-    console.log("remainUserdata", UserData);
+    // console.log("remainUserdata", UserData);
     this.setState({ UserData: UserData });
   };
 
@@ -66,6 +67,57 @@ class TableComponent extends React.Component {
     // console.log("data", singleUserData, UserData);
     e.target.reset();
   };
+
+  onUpdate = (e, index) => {
+    e.preventDefault();
+    const { UserData, singleUserData } = this.state;
+    console.log("hello", UserData, singleUserData, index);
+
+    var updatedData = [];
+    UserData.map((item, i) => {
+      console.log("userData.update", item, i, object);
+      var object = {
+        ...singleUserData,
+        Name: i === i ? item.Name : e.target.value,
+        Std: i === i ? item.Std : e.target.value,
+        Age: i === i ? item.Age : e.target.value,
+        AvgMarks: i === i ? item.AvgMarks : e.target.value,
+      };
+      return (updatedData[i] = object);
+    });
+    this.setState({ UserData: updatedData });
+    console.log("updatedData", updatedData);
+  };
+
+  //   var updatedData = [];
+  //   UserData.map((item, i) => {
+  //     // console.log("userData.update", item, i);
+  //     var object = {
+  //       ...UserData,
+  //       Name: singleUserData.id === item?.id ? item.Name : e.target.value,
+  //     };
+  //     return (updatedData[i] = object);
+  //   });
+  //   this.setState({ UserData: updatedData });
+  //   console.log("updatedData", updatedData);
+  // };
+
+  //   const updatedData = this.state.UserData.map((x) =>
+  //     x.id === item.id ? { ...x, Name: item.Name } : x
+  //   );
+  //   this.setState({ UserData: updatedData });
+  // };
+  //   var updatedData = [];
+  //   UserData.map((item, subitem, i) => {
+  //     console.log("userData.update", item, subitem, i);
+  //     var object = {
+  //       Name: item.id === item?.id ? item.name : item,
+  //     };
+  //     return (updatedData[i] = object);
+  //   });
+
+  //   this.setState({ UserData: updatedData });
+  //   console.log("updatedData", updatedData);
 
   InputChange = (e) => {
     let name = e.target.name;
@@ -88,9 +140,8 @@ class TableComponent extends React.Component {
           submitdata={this.onFormsubmit}
           singleUserinfo={this.state.singleUserData}
           handleInputChange={this.InputChange}
-          chagedtext={this.state.text}
-          updateBtn={this.changebtn}
           updatedData={this.state.Update}
+          onupdatedata={this.onUpdate}
         />
         <Table
           usertabVal={this.state.UserData}

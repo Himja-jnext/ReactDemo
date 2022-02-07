@@ -109,11 +109,16 @@ export default class Form extends React.Component {
   render() {
     const { singleUserinfo } = this.props;
     // console.log("singleUserinfo", singleUserinfo);
-    const { updatedData } = this.props;
-    console.log("updatedData", updatedData);
+    const { updatedData, onupdatedata } = this.props;
+    // console.log("updatedData", updatedData);
     return (
       <div>
-        <form className="dataform" onSubmit={(e) => this.props.submitdata(e)}>
+        <form
+          className="dataform"
+          onSubmit={(e) =>
+            updatedData ? this.props.onupdatedata(e) : this.props.submitdata(e)
+          }
+        >
           <div className="datablock">
             <label htmlFor="Name">Name : </label>
             <br></br>
@@ -137,7 +142,6 @@ export default class Form extends React.Component {
             <label htmlFor="Std">Standard :</label>
             <br></br>
             <input
-              ref={(ref) => (this.fileInput = ref)}
               type="text"
               id="Std"
               name="Std"
