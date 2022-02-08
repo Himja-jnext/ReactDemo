@@ -109,7 +109,7 @@ export default class Form extends React.Component {
   render() {
     const { singleUserinfo } = this.props;
     // console.log("singleUserinfo", singleUserinfo);
-    const { updatedData, onupdatedata } = this.props;
+    const { updatedData } = this.props;
     // console.log("updatedData", updatedData);
     return (
       <div>
@@ -195,7 +195,7 @@ export default class Form extends React.Component {
               {this.state.error["AvgMarks"]}
             </p> */}
           </div>
-          {/* <div className="datablock">
+          {/* {/* <div className="datablock">
             <select
               id="course"
               name="course"
@@ -215,9 +215,8 @@ export default class Form extends React.Component {
             <p style={{ color: "rgb(231, 111, 5)" }}>
               {this.state.error["dropdown"]}
             </p>
-          </div>
-
-          <div className="radioblock">
+          </div> */}
+          {/* <div className="radioblock">
             <p>Choose a favorite Web language: </p>
             <input
               type="radio"

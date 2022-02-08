@@ -7,6 +7,14 @@ export default class Table extends React.Component {
 
     return (
       <div>
+        <input
+          type="text"
+          name="Search"
+          id="Search"
+          className="searchfiled"
+          placeholder="Search Students"
+          onChange={(e) => this.props.searchData(e)}
+        />
         <table className="table">
           <thead>
             <tr>
@@ -35,10 +43,16 @@ export default class Table extends React.Component {
                   <td>{item?.lang}</td>
                   <td>{item?.hobby}</td>
 
-                  <button onClick={(e) => this.props.editItem(e, item)}>
+                  <button
+                    className="sub-btn edit-btn"
+                    onClick={(e) => this.props.editItem(e, item)}
+                  >
                     Edit
                   </button>
-                  <button onClick={(e) => this.props.deleteItem(index, item)}>
+                  <button
+                    className="sub-btn edit-btn"
+                    onClick={(e) => this.props.deleteItem(index, item)}
+                  >
                     Delete
                   </button>
                 </tr>

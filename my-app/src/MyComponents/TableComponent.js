@@ -21,6 +21,7 @@ class TableComponent extends React.Component {
       Age: "",
       AvgMarks: "",
       id: "",
+      Search: "",
       Update: false,
       clickedItemData: {},
     };
@@ -96,24 +97,50 @@ class TableComponent extends React.Component {
       return (updatedData[i] = object);
     });
     console.log("updatedData", updatedData);
-    this.setState({ UserData: updatedData, formdata: {} });
+    this.setState({ UserData: updatedData, formdata: {}, Update: false });
     e.target.reset();
   };
 
   InputChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    let searchvalue = e.target.value;
     this.setState(() => ({
-      formdata: { ...this.state.formdata, [name]: value },
+      formdata: { ...this.state.formdata, [name]: value, Search: searchvalue },
     }));
+    // this.setState();
+  };
+
+  onsearch = (e) => {
+    const { Search } = this.state;
+    // let searchvalue = e.target.value;
+    let students = this.props.searchdata,
+      searchstring = this.state.Search.trim().toLowerCase();
+    if (Search?.length > 0) {
+      students = students.filer((e) => {
+        e.Name.toLowerCase().match(searchstring);
+        console.log("hello", Search.length);
+      });
+      this.setState({ userData: searchstring });
+    }
+    console.log("hello", Search.length);
   };
 
   render() {
-    const { userData, formdata, UserData, Update } = this.state;
+    const { userData, formdata, UserData, Update, Search } = this.state;
 
     // console.log("UserData", UserData);
     // console.log("singleUserData", this.state.singleUserData);
     // console.log(typeof userData);
+
+    // let students = this.props.searchdata,
+    //   searchstring = this.state.Search.trim().toLowerCase();
+    // if (Search?.length > 0) {
+    //   students = students.filer((e) => {
+    //     e.Name.toLowerCase().match(searchstring);
+    //   });
+    //   this.setState({ userData: searchstring });
+    // }
 
     return (
       <div>
@@ -128,6 +155,7 @@ class TableComponent extends React.Component {
           usertabVal={this.state.UserData}
           deleteItem={this.removeItem}
           editItem={this.addItem}
+          searchData={this.onsearch}
           // handleClick={this.showclickData}
         />
 
