@@ -14,7 +14,7 @@ class TableComponent extends React.Component {
       //   { Name: "Jarnav", Std: 5, Age: 10, AvgMarks: 94 },
       //   { Name: "Dhiya", Std: 12, Age: 18, AvgMarks: 56 },
       // ],
-      singleUserData: {},
+      formdata: {},
       UserData: [],
       Name: "",
       Std: "",
@@ -22,6 +22,7 @@ class TableComponent extends React.Component {
       AvgMarks: "",
       id: "",
       Update: false,
+      clickedItemData: {},
     };
     // this.showclickData = this.showclickData.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -31,19 +32,14 @@ class TableComponent extends React.Component {
   // };
 
   addItem = (e, item) => {
-    this.setState({ singleUserData: item, Update: true });
-    // console.log("singleUserData", item);
+    this.setState({
+      clickedItemData: item,
+      Update: true,
+      formdata: item,
+    });
+    // console.log("itemid", item.userId);
+    console.log("clickedItemData", item, item.userId);
   };
-
-  // let updateData = UserData.map((userupdates) => {
-  //   if (userupdates.index === UserData.index) {
-  //     userupdates.Name = UserData.Name;
-  //     userupdates.Std = UserData.Std;
-  //   }
-  //   {
-  //     return userupdates;
-  //   }
-  // }); line-41 :"try" : subitem.Name,
 
   removeItem = (index, item) => {
     const { UserData } = this.state;
@@ -55,82 +51,67 @@ class TableComponent extends React.Component {
 
   onFormsubmit = (e) => {
     e.preventDefault();
-    const { singleUserData } = this.state;
+    const { formdata } = this.state;
     let UserData = [...this.state.UserData];
 
-    UserData.push(singleUserData);
+    // var autoId = UserData?.length;
+    var obj = {
+      userId: UserData?.length + 1,
+      ...formdata,
+    };
+    UserData.push(obj);
     this.setState({
       UserData,
-      singleUserData: {},
+      formdata: {},
       Update: false,
     });
-    // console.log("data", singleUserData, UserData);
+    // console.log("data", formdata, UserData);
     e.target.reset();
   };
 
-  onUpdate = (e, index) => {
+  onUpdate = (e) => {
+    const { clickedItemData, UserData, formdata } = this.state;
+    console.log("update", clickedItemData, formdata);
     e.preventDefault();
-    const { UserData, singleUserData } = this.state;
-    console.log("hello", UserData, singleUserData, index);
-
+    // const { UserData, formdata } = this.state;
+    // console.log("hello", UserData, formdata);
     var updatedData = [];
     UserData.map((item, i) => {
-      console.log("userData.update", item, i, object);
+      // console.log("userData", item, i);
       var object = {
-        ...singleUserData,
-        Name: i === i ? item.Name : e.target.value,
-        Std: i === i ? item.Std : e.target.value,
-        Age: i === i ? item.Age : e.target.value,
-        AvgMarks: i === i ? item.AvgMarks : e.target.value,
+        ...item,
+        Name:
+          item?.userId === clickedItemData?.userId
+            ? formdata?.Name
+            : item?.Name,
+        Std:
+          item?.userId === clickedItemData?.userId ? formdata?.Std : item?.Std,
+        Age:
+          item?.userId === clickedItemData?.userId ? formdata?.Age : item?.Age,
+        AvgMarks:
+          item?.userId === clickedItemData?.userId
+            ? formdata?.AvgMarks
+            : item?.AvgMarks,
       };
       return (updatedData[i] = object);
     });
-    this.setState({ UserData: updatedData });
     console.log("updatedData", updatedData);
+    this.setState({ UserData: updatedData, formdata: {} });
+    e.target.reset();
   };
-
-  //   var updatedData = [];
-  //   UserData.map((item, i) => {
-  //     // console.log("userData.update", item, i);
-  //     var object = {
-  //       ...UserData,
-  //       Name: singleUserData.id === item?.id ? item.Name : e.target.value,
-  //     };
-  //     return (updatedData[i] = object);
-  //   });
-  //   this.setState({ UserData: updatedData });
-  //   console.log("updatedData", updatedData);
-  // };
-
-  //   const updatedData = this.state.UserData.map((x) =>
-  //     x.id === item.id ? { ...x, Name: item.Name } : x
-  //   );
-  //   this.setState({ UserData: updatedData });
-  // };
-  //   var updatedData = [];
-  //   UserData.map((item, subitem, i) => {
-  //     console.log("userData.update", item, subitem, i);
-  //     var object = {
-  //       Name: item.id === item?.id ? item.name : item,
-  //     };
-  //     return (updatedData[i] = object);
-  //   });
-
-  //   this.setState({ UserData: updatedData });
-  //   console.log("updatedData", updatedData);
 
   InputChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     this.setState(() => ({
-      singleUserData: { ...this.state.singleUserData, [name]: value },
+      formdata: { ...this.state.formdata, [name]: value },
     }));
   };
 
   render() {
-    const { userData, singleUserData, UserData, Update } = this.state;
+    const { userData, formdata, UserData, Update } = this.state;
 
-    // console.log("userData", this.state.UserData);
+    // console.log("UserData", UserData);
     // console.log("singleUserData", this.state.singleUserData);
     // console.log(typeof userData);
 
@@ -138,7 +119,7 @@ class TableComponent extends React.Component {
       <div>
         <Form
           submitdata={this.onFormsubmit}
-          singleUserinfo={this.state.singleUserData}
+          singleUserinfo={this.state.formdata}
           handleInputChange={this.InputChange}
           updatedData={this.state.Update}
           onupdatedata={this.onUpdate}
