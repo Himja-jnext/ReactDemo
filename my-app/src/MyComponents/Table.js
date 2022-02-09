@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Table extends React.Component {
   render() {
-    const { usertabVal } = this.props;
+    const { usertabVal, Searchdata } = this.props;
     // console.log("usertabVal", usertabVal);
 
     return (
@@ -11,6 +11,7 @@ export default class Table extends React.Component {
           type="text"
           name="Search"
           id="Search"
+          // value={Searchdata.value}
           className="searchfiled"
           placeholder="Search Students"
           onChange={(e) => this.props.searchData(e)}

@@ -52,8 +52,8 @@ class TableComponent extends React.Component {
 
   onFormsubmit = (e) => {
     e.preventDefault();
-    const { formdata } = this.state;
-    let UserData = [...this.state.UserData];
+    const { formdata, UserData } = this.state;
+    // let UserData = [...this.state.UserData];
 
     // var autoId = UserData?.length;
     var obj = {
@@ -72,7 +72,7 @@ class TableComponent extends React.Component {
 
   onUpdate = (e) => {
     const { clickedItemData, UserData, formdata } = this.state;
-    console.log("update", clickedItemData, formdata);
+    console.log("userdata", clickedItemData, formdata);
     e.preventDefault();
     // const { UserData, formdata } = this.state;
     // console.log("hello", UserData, formdata);
@@ -102,28 +102,46 @@ class TableComponent extends React.Component {
   };
 
   InputChange = (e) => {
+    const { Search, UserData } = this.state;
     let name = e.target.name;
     let value = e.target.value;
-    let searchvalue = e.target.value;
+
     this.setState(() => ({
-      formdata: { ...this.state.formdata, [name]: value, Search: searchvalue },
+      formdata: { ...this.state.formdata, [name]: value },
     }));
-    // this.setState();
   };
 
   onsearch = (e) => {
-    const { Search } = this.state;
-    // let searchvalue = e.target.value;
-    let students = this.props.searchdata,
-      searchstring = this.state.Search.trim().toLowerCase();
-    if (Search?.length > 0) {
-      students = students.filer((e) => {
-        e.Name.toLowerCase().match(searchstring);
-        console.log("hello", Search.length);
+    e.preventDefault();
+    const { Search, UserData } = this.state;
+    let searchvalue = e.target.value;
+
+    let searchstring = searchvalue.trim().toLowerCase();
+    console.log("searchstring :", searchstring, searchstring.length);
+
+    if (searchstring?.length > 0) {
+      this.setState({
+        Userdata: UserData?.filter((item) => {
+          item?.Name.toLowerCase().match(searchstring);
+          console.log("hello", UserData);
+        }),
       });
-      this.setState({ userData: searchstring });
+    } else {
+      this.setState({ UserData: UserData });
     }
-    console.log("hello", Search.length);
+
+    // if (searchstring?.length > 0) {
+    //   return UserData.filter((item) => {
+    //     item?.Name.toLowerCase().match(searchstring);
+    //     this.setState({ UserData: UserData });
+    //   });
+    // } else {
+    //   return UserData;
+    // }
+    // console.log("filterdata", UserData);
+    // this.setState({ UserData: UserData });
+
+    // console.log("hello", UserData);
   };
 
   render() {
@@ -132,15 +150,6 @@ class TableComponent extends React.Component {
     // console.log("UserData", UserData);
     // console.log("singleUserData", this.state.singleUserData);
     // console.log(typeof userData);
-
-    // let students = this.props.searchdata,
-    //   searchstring = this.state.Search.trim().toLowerCase();
-    // if (Search?.length > 0) {
-    //   students = students.filer((e) => {
-    //     e.Name.toLowerCase().match(searchstring);
-    //   });
-    //   this.setState({ userData: searchstring });
-    // }
 
     return (
       <div>
@@ -155,6 +164,8 @@ class TableComponent extends React.Component {
           usertabVal={this.state.UserData}
           deleteItem={this.removeItem}
           editItem={this.addItem}
+          // Searchdata={this.state.Search}
+          handleInputChange={this.InputChange}
           searchData={this.onsearch}
           // handleClick={this.showclickData}
         />
